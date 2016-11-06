@@ -1,6 +1,6 @@
 # Table of Contents
 
-1. [Challenge Summary] (README.md#challenge-summary)
+1. [Loading the Initial State] (README.md#initial-state)
 2. [Details of Implementation] (README.md#details-of-implementation)
 3. [Description of Data] (README.md#description-of-data)
 4. [Writing clean, scalable and well-tested code](README.md#writing-clean-scalable-and-well-tested-code)
@@ -8,9 +8,9 @@
 6. [Testing your directory structure and output format] (README.md#testing-your-directory-structure-and-output-format)
 7. [FAQ] (README.md#faq)
 
-##Challenge Summary
+##Initial State
 
-Did this things work? Imagine you're a data engineer at a "digital wallet" company called PayMo that allows users to easily request and make payments to other PayMo users. The team at PayMo has decided they want to implement features to prevent fraudulent payment requests from untrusted users. 
+We will assume that every line in `batch_payment.csv` consists of `trusted` payments between users. We want to turn this batch file into a suitable data structure such that the validity of any user and any other user can be verified.    
 
 ###Feature 1
 When anyone makes a payment to another user, they'll be notified if they've never made a transaction with that user before.
