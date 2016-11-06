@@ -10,7 +10,15 @@
 
 ##Initial State
 
-We will assume that every line in `batch_payment.csv` consists of `trusted` payments between users. We want to turn this batch file into a suitable data structure such that the validity of any user and any other user can be verified.    
+We will assume that every line in `batch_payment.csv` consists of `trusted` payments between users. We want to turn this batch file into a suitable data structure such that the validity of any user and any other user can be verified.   The file is roughly 200MB and can either be stored on disk, or loaded into memory, or a combination of both.  When it is imperative that transactions are processed as quickly as possible, storing the batch data in memory is the fastest approach.  
+
+The natural structure of the information as given is in a graph composed of nodes and edges which are the id's of users and the transactions are the edges.  The transaction data contains payment amounts and messages, but for now we will not makes of this information for the implementation of the inital facets of the problem.  Perhaps if the amounts are higher, the relationship between the two parties can be assumed to be closer.  We will come back to these aspects of the dataset in future iterations. 
+
+As such we will need to implement a class to handle graphs.  We will assume the edges are unweighted and undirectional for now.  This is essentially and adjacency graph.  This adjacency graph class should implement the following methods:
+
+* Initialize the graph
+* Add node
+* Add edge
 
 ###Feature 1
 When anyone makes a payment to another user, they'll be notified if they've never made a transaction with that user before.
