@@ -10,7 +10,7 @@
 
 ##Challenge Summary
 
-Imagine you're a data engineer at a "digital wallet" company called PayMo that allows users to easily request and make payments to other PayMo users. The team at PayMo has decided they want to implement features to prevent fraudulent payment requests from untrusted users. 
+Did this things work? Imagine you're a data engineer at a "digital wallet" company called PayMo that allows users to easily request and make payments to other PayMo users. The team at PayMo has decided they want to implement features to prevent fraudulent payment requests from untrusted users. 
 
 ###Feature 1
 When anyone makes a payment to another user, they'll be notified if they've never made a transaction with that user before.
