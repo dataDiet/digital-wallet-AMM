@@ -1,0 +1,2 @@
+[Thu Nov 10 17:44:38 PST 2016] 0 of 3 tests passed
+[Thu Nov 10 17:45:33 PST 2016] 0 of 3 tests passed
