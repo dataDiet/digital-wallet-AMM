@@ -1,15 +1,11 @@
 import adGraph
-import numpy
-
-# initialize graph
-g = adGraph.Graph()
 
 # read in batch_payment.txt file  and initial state edges into graph
 def read_batch():
 
     i = 1
     # Read in batch data file
-    batch_path = '../paymo_input/batch_payment.txt'
+    batch_path = './paymo_input/batch_payment.txt'
     with open(batch_path,'r') as batchFile:
         print('Reading batch file: '+ batch_path)
         #skip the header: time, id1, id2, amount, message
@@ -27,20 +23,22 @@ def read_batch():
                 # print progress every 100,000 records
                 print(str(i)+' messages read from batch file')
     print('Done reading batch file')
-    stats = open('/Users/akiramadono/code/data/insight_coding_data/stats.csv','w')
-    for key in g.get_vertices():
-        stats.write(str(g.get_vertex(key).get_in_out())+'\n')
-    stats.close()
+
+    # code for generating incoming/outgoing payment ratio stats
+    # stats = open('/Users/akiramadono/code/data/insight_coding_data/stats.csv','w')
+    # for key in g.get_vertices():
+    #     stats.write(str(g.get_vertex(key).get_in_out())+'\n')
+    # stats.close()
 
 # read in stream_payment.txt file and determine trustworthiness from batch_payment data
 # update batch state with new stream payment data
 def read_stream():
 
-    stream_path =  '../paymo_input/stream_payment.txt'
+    stream_path =  './paymo_input/stream_payment.txt'
 
-    o1_file = '../paymo_output/output1.txt'
-    o2_file = '../paymo_output/output2.txt'
-    o3_file = '../paymo_output/output3.txt'
+    o1_file = './paymo_output/output1.txt'
+    o2_file = './paymo_output/output2.txt'
+    o3_file = './paymo_output/output3.txt'
 
     o1 = open(o1_file,'w')
     o1.close()
@@ -92,13 +90,23 @@ def read_stream():
             # add edge to graph
             g.add_edge(id1, id2)
             # delete oldest edge in graph
-            g.del_edge()
-
-            v1=g.get_vertex(id1)
-            v2=g.get_vertex(id2)
+            v1 = g.get_vertex(id1)
+            v2 = g.get_vertex(id2)
             inout1 = v1.get_in_out()
             inout2 = v2.get_in_out()
 
+            suspicious_value = 10
+
+            if inout1 > suspicious_value and bi_result > 4:
+                print('User with id: '+id1+' with incoming/outgoing payment ratio '+str(inout1)+' suspected of fraud.')
+            if inout2 > suspicious_value and bi_result > 4:
+                print('User with id: '+id2+' with incoming/outgoing payment ratio '+str(inout2)+' suspected of fraud')
+
+            # save space by deleting old edges
+            g.del_edge()
+
 if __name__ == '__main__':
+    # initialize graph
+    g = adGraph.Graph()
     read_batch()
     read_stream()
