@@ -50,7 +50,6 @@ def read_stream():
     with open(stream_path, 'r') as streamFile:
         # skip the header: time, id1, id2, amount, message
         next(streamFile)
-        i = 1
         for lines in streamFile:
             all_tokens = lines.split(", ")
             # id of person paying
@@ -69,15 +68,10 @@ def read_stream():
 
             if bi_result == 1:
                 output1 = good
+            if bi_result <= 2:
                 output2 = good
+            if bi_result <= 4:
                 output3 = good
-            else:
-                if bi_result <= 2:
-                    output2 = good
-                    output3 = good
-                else:
-                    if bi_result <= 4:
-                        output3 = good
 
             # write to file in append mode with buffering
             with open(o1_file, 'a', 100) as o1:
