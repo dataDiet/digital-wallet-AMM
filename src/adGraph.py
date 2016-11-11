@@ -51,6 +51,7 @@ class Graph:
         self.vert_dict[node] = new_vertex
         return new_vertex
 
+
     def get_vertex(self, n):
         if n in self.vert_dict:
             return self.vert_dict[n]
@@ -82,20 +83,9 @@ class Graph:
         # source and target must exist in graph
         if source and target:
             source.set_distance(0)
-            q.enqueue(source)
-            while not q.isEmpty():
-                current = q.dequeue()
-                connections = current.get_connections()
                 if connections:
-                    for node in connections:
-                        node_distance = node.get_distance()
-                        if node_distance == -1:
-                            node.set_distance(current.get_distance() + 1)
-                            node.set_parent(current)
-                            q.enqueue(node)
             return self.get_vertex(to).get_distance()
         else:
-            return -1
 
 
 if __name__ == '__main__':
@@ -123,7 +113,6 @@ if __name__ == '__main__':
         for w in v.get_connections():
             vid = v.get_id()
             wid = w.get_id()
-            print '( %s , %s, %3d)'  % ( vid, wid, v.get_weight(w))
 
     for v in g:
         print 'g.vert_dict[%s]=%s' %(v.get_id(), g.vert_dict[v.get_id()])
